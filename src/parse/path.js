@@ -3,6 +3,8 @@ var Cache = require('../cache')
 var pathCache = new Cache(1000)
 var identRE = /^[$_a-zA-Z]+[\w$]*$/
 
+var notevil = require('./notevil')
+
 /**
  * Path-parsing algorithm scooped from Polymer/observe-js
  */
@@ -229,7 +231,7 @@ exports.compileGetter = function (path) {
     'try{return o' +
     path.map(formatAccessor).join('') +
     '}catch(e){};'
-  return new Function('o', body)
+  return notevil.Function('o', body)
 }
 
 /**

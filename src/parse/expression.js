@@ -3,6 +3,8 @@ var Path = require('./path')
 var Cache = require('../cache')
 var expressionCache = new Cache(1000)
 
+var notevil = require('./notevil')
+
 var keywords =
   'Math,break,case,catch,continue,debugger,default,' +
   'delete,do,else,false,finally,for,function,if,in,' +
@@ -151,13 +153,13 @@ function compilePathFns (exp) {
 
 function makeGetter (body) {
   try {
-    return new Function(
+    return notevil.Function(
       'scope',
       '"use strict";try{return ' + body + '}catch(e){};'
     )
   } catch (e) {
     _.warn(
-      'Invalid expression. ' + 
+      'Invalid expression. ' +
       'Generated function body: ' + body
     )
   }
@@ -179,7 +181,7 @@ function makeGetter (body) {
 
 function makeSetter (body) {
   try {
-    return new Function(
+    return notevil.Function(
       'scope',
       'value',
       '"use strict";' + body + ' = value;'

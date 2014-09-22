@@ -55,6 +55,7 @@
     "src/observer/array.js",
     "src/observer/index.js",
     "src/observer/object.js",
+    "src/parse/notevil.js",
     "src/parse/directive.js",
     "src/parse/expression.js",
     "src/parse/path.js",
