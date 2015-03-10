@@ -1,10 +1,10 @@
-module.exports = (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require,ex;for(var o=0;o<r.length;o++)ex=s(r[o]);return ex})({1:[function(require,module,exports){
+!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.notevil=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof req=="function"&&req;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof req=="function"&&req;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(req,module,exports){
 (function (global){
-var parse = require('esprima').parse
-var hoist = require('hoister')
+var parse = req('esprima').parse
+var hoist = req('hoister')
 
-var InfiniteChecker = require('./lib/infinite-checker')
-var Primitives = require('./lib/primitives')
+var InfiniteChecker = req('./lib/infinite-checker')
+var Primitives = req('./lib/primitives')
 
 module.exports = safeEval
 module.exports.eval = safeEval
@@ -512,8 +512,8 @@ function ReturnValue(type, value){
   this.type = type
   this.value = value
 }
-}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./lib/infinite-checker":2,"./lib/primitives":3,"esprima":4,"hoister":5}],2:[function(require,module,exports){
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./lib/infinite-checker":2,"./lib/primitives":3,"esprima":4,"hoister":5}],2:[function(req,module,exports){
 module.exports = InfiniteChecker
 
 function InfiniteChecker(maxIterations){
@@ -531,7 +531,7 @@ InfiniteChecker.prototype.check = function(){
     throw new Error('Infinite loop detected - reached max iterations')
   }
 }
-},{}],3:[function(require,module,exports){
+},{}],3:[function(req,module,exports){
 (function (global){
 var names = ['Object', 'String', 'Boolean', 'Number', 'RegExp', 'Date', 'Array']
 var immutable = {string: 'String', boolean: 'Boolean', number: 'Number' }
@@ -645,8 +645,8 @@ function wrap(prim){
   result.wrapped = true
   return result
 }
-}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],4:[function(require,module,exports){
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],4:[function(req,module,exports){
 /*
   Copyright (C) 2012 Ariya Hidayat <ariya.hidayat@gmail.com>
   Copyright (C) 2012 Mathias Bynens <mathias@qiwi.be>
@@ -4556,7 +4556,7 @@ parseStatement: true, parseSourceElement: true */
 }));
 /* vim: set sw=4 ts=4 et tw=80 : */
 
-},{}],5:[function(require,module,exports){
+},{}],5:[function(req,module,exports){
 module.exports = hoist
 
 function hoist(ast){
@@ -4569,7 +4569,7 @@ function hoist(ast){
 
     walkAll(ast)
     prependScope(ast, variables, functions)
-
+    
   } else {
     walk(ast)
   }
@@ -4642,15 +4642,15 @@ function prependScope(nodes, variables, functions){
     var declarations = []
     for (var i=0;i<variables.length;i++){
       declarations.push({
-        type: 'VariableDeclarator',
+        type: 'VariableDeclarator', 
         id: variables[i].id,
         init: null
       })
     }
-
+    
     nodes.unshift({
-      type: 'VariableDeclaration',
-      kind: 'var',
+      type: 'VariableDeclaration', 
+      kind: 'var', 
       declarations: declarations
     })
 
@@ -4658,8 +4658,9 @@ function prependScope(nodes, variables, functions){
 
   if (functions && functions.length){
     for (var i=0;i<functions.length;i++){
-      nodes.unshift(functions[i])
+      nodes.unshift(functions[i]) 
     }
   }
 }
-},{}]},{},[1])
+},{}]},{},[1])(1)
+});
